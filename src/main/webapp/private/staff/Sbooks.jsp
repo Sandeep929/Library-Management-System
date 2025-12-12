@@ -25,7 +25,7 @@
     <a class="nav-btn" href="<%=request.getContextPath()%>/BookServlet">
         <i class="fa-solid fa-book"></i>&nbsp;Books
     </a>
-    <a class="nav-btn" href="<%=request.getContextPath()%>/private/staff/issue-book.jsp">
+    <a class="nav-btn" href="<%=request.getContextPath()%>/Show_Book_Requests_Servlet">
         <i class="fa-solid fa-book-open"></i>&nbsp;Issue Book
     </a>
     <a class="nav-btn" href="<%=request.getContextPath()%>/GetStudent">

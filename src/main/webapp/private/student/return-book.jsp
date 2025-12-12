@@ -17,7 +17,7 @@
     <div class="layout">
       
       <aside class="sidebar">
-    <a class="nav-btn" href="<%=request.getContextPath()%>/private/student/home.jsp">
+    <a class="nav-btn" href="<%=request.getContextPath()%>/S_Home_Servlet">
         <i class="fa-solid fa-table-columns"></i>&nbsp;Dashboard
     </a>
     <a class="nav-btn" href="<%=request.getContextPath()%>/BookServlet">
@@ -43,7 +43,7 @@
 		        <option>Radhika P — Introduction to Java (Issued 2025-11-28)</option>
 		      </select>
 		    </div>
-		    <div style="text-align:right;"><a class="btn" href="return-book.html">Return</a></div>
+		    <div style="text-align:right;"><a class="btn" href="<%=request.getContextPath()%>/private/student/return-book.jsp">Return</a></div>
 		  </form>
 		</div>
 

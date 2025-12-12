@@ -19,7 +19,7 @@
     <div class="layout">
       
       <aside class="sidebar">
-        <a class="nav-btn" href="<%=request.getContextPath()%>/private/student/home.jsp">
+        <a class="nav-btn" href="<%=request.getContextPath()%>/S_Home_Servlet">
         <i class="fa-solid fa-table-columns"></i>&nbsp;Dashboard
     </a>
     <a class="nav-btn" href="<%=request.getContextPath()%>/private/student/books.jsp">
@@ -66,16 +66,28 @@
 		      	<td>
 		      	<%
 					String msg = (String) request.getAttribute("msg");
-					if(msg != null){
+					String isbn = (String) request.getAttribute("ISBN");
+					if(msg != null && isbn != null){
+						if(bl.get(i).getISBN().equals(isbn)){
 						%>
 						<button class="btn" type="submit">Requested</button>
 						<%
+						}
+						else{
+							%>
+							<form action="Issue_Request_Servlet">
+				      		
+				      			<input style="display: none;" name = "isbn" value = "<%= bl.get(i).getISBN()%>">
+				      			<button style="min-width: 85px;" class="btn" type="submit">Get Book</button>
+			      			</form>
+			      		<%
+						}
 					}else{
 						%>
 						<form action="Issue_Request_Servlet">
 			      		
 			      			<input style="display: none;" name = "isbn" value = "<%= bl.get(i).getISBN()%>">
-			      			<button class="btn" type="submit">Get Book</button>
+			      			<button style="min-width: 85px;" class="btn" type="submit">Get Book</button>
 		      			</form>
 		      		<%
 					}

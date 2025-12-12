@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 			
 			
 			if(user.getRole().equals("student")) {
-				response.sendRedirect(request.getContextPath()+"/private/student/home.jsp");
+				response.sendRedirect(request.getContextPath()+"/S_Home_Servlet");
 			}else {
 				response.sendRedirect(request.getContextPath()+"/private/staff/shome.jsp");
 			}
