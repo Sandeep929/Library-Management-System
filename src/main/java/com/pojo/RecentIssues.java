@@ -1,23 +1,24 @@
 package com.pojo;
 
 public class RecentIssues {
-	String User;
-	String Book;
+	String regno;
+	String isbn;
 	String IssueDate;
 	String DueDate;
 	String Status;
 	
-	public String getUser() {
-		return User;
+	
+	public String getRegno() {
+		return regno;
 	}
-	public void setUser(String user) {
-		User = user;
+	public void setRegno(String regno) {
+		this.regno = regno;
 	}
-	public String getBook() {
-		return Book;
+	public String getIsbn() {
+		return isbn;
 	}
-	public void setBook(String book) {
-		Book = book;
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 	public String getIssueDate() {
 		return IssueDate;

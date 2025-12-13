@@ -121,13 +121,15 @@ public class BookDB {
 	
 	public boolean storeRequest(Book b, Student s) {
 		try {
-			PreparedStatement ps = con.prepareStatement("Insert into Request (s_name,RegNo,b_name,ISBN,Available) values s_name = ?, RegNo =?, b_name=?, ISBN = ?, Available = ? ");
+			System.out.println("Reached storeRequest");
+			PreparedStatement ps = con.prepareStatement("Insert into Request (s_name,RegNo,b_name,ISBN,Available) values (?,?,?,?,?) ");
+//			s_name = ?, RegNo =?, b_name=?, ISBN = ?, Available = ? you wrote this instead of this values (?,?,?,?,?) that is why query is not working
 			
 			ps.setString(1, s.getName());
 			ps.setString(2, s.getRegNo());
 			ps.setString(3, b.getTitle());
 			ps.setString(4, b.getISBN());
-			ps.setString(5, b.getAvailavble());
+			ps.setInt(5, Integer.parseInt(b.getAvailavble()));
 			
 			int x = ps.executeUpdate();
 			System.out.println(x);
