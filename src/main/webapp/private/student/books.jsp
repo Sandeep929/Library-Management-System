@@ -22,12 +22,11 @@
 		  </div>
 		  
 		  <div style="display:flex;gap:8px;margin-top:8px;margin-bottom:12px;">
-		    <input class="input" placeholder="Search by title or author" />
-		    <select class="select"><option>All categories</option><option>Computer Science</option></select>
-		    <a class="btn" href="<%= request.getContextPath() %>/private/student/books.jsp">Search</a>
+		    <input type="text" class="input" id="searchInput" placeholder="Search by title or author" />
+		    <button class="btn" onclick="searchBooks()">Search</button>
 		  </div>
 		  
-		  <table class="table">
+		  <table id = "bookTable" class="table">
 		    <thead><tr><th>Title</th><th>Author</th><th>ISBN</th><th>Category</th><th>Available</th></tr></thead>
 		    <tbody>
 		    <%
@@ -85,5 +84,16 @@
       </main>
     </div>
   </div>
+  <script>
+function searchBooks() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let rows = document.querySelectorAll("#bookTable tbody tr");
+
+    rows.forEach(row => {
+        let text = row.innerText.toLowerCase();
+        row.style.display = text.includes(input) ? "" : "none";
+    });
+}
+</script>
 </body>
 </html>
