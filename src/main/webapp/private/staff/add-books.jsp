@@ -10,9 +10,19 @@
 </head>
 <body>
 	<div class="container">
+	<%
+	Cookie cookies[] = request.getCookies();
+	String username = null;
+	
+	for (Cookie cookie : cookies) {
+		if(cookie.getName().equals("username")) {
+			username = cookie.getValue();
+		}
+	}
+	%>
     <div class="header">
       <div class="logo">📚 Library Management System</div>
-      <div class="small">Admin</div>
+      <div class="small"><%= username %></div>
     </div>
     <div class="layout">
       
