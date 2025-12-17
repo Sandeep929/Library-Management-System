@@ -41,6 +41,7 @@ public class Issued_book_list_Servlet extends HttpServlet {
 		RecenIssuesDB ridb = new RecenIssuesDB();
 		ArrayList<RecentIssues> ri = ridb.getIssueInfo(regno);
 		if(ri==null) {
+			System.out.println("ri is null");
 			RequestDispatcher rd = request.getRequestDispatcher("/private/student/return-book.jsp");
 			rd.forward(request, response);
 			return;
@@ -50,6 +51,7 @@ public class Issued_book_list_Servlet extends HttpServlet {
 		ArrayList<Book> bl = bdb.getBooks();
 		
 		if(bl == null) {
+			System.out.println("bl is null");
 			RequestDispatcher rd = request.getRequestDispatcher("/private/student/return-book.jsp");
 			rd.forward(request, response);
 			return;
@@ -59,7 +61,7 @@ public class Issued_book_list_Servlet extends HttpServlet {
 		request.setAttribute("regno", regno);
 		request.setAttribute("ri", ri);
 		request.setAttribute("bl", bl);
-		
+		System.out.println("All is fine");
 		RequestDispatcher rd = request.getRequestDispatcher("/private/student/return-book.jsp");
 		rd.forward(request, response);
 	}

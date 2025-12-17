@@ -6,11 +6,7 @@
 <meta charset="UTF-8">
 <title>Library-Management-System | Login</title>
 <link rel="stylesheet" href="assets/css/style.css">
-<%-- <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css'
-	rel='stylesheet'>
-<link
-	href='https://cdn.boxicons.com/3.0.6/fonts/brands/boxicons-brands.min.css'
-	rel='stylesheet'>--%>
+
 
 </head>
 <body>
