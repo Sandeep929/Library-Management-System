@@ -68,5 +68,24 @@ public class RecenIssuesDB {
 		return b;
 	}
 	
+	public ArrayList<RecentIssues> getIssueBook(){
+		ArrayList<RecentIssues> il = new ArrayList<RecentIssues>();
+		
+		try {
+			PreparedStatement ps = con.prepareStatement("select * from recent_issues");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				RecentIssues ri = new RecentIssues();
+				ri.setIsbn(rs.getString("isbn"));
+				ri.setDueDate(rs.getString("duedate"));
+				il.add(ri);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return il;
+	}
+	
 	
 }

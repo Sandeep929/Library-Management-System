@@ -41,20 +41,23 @@ public class LoginServlet extends HttpServlet {
 			Cookie jwtCookie = new Cookie("Token", token);
 			Cookie role = new Cookie("role", user.getRole());
 			Cookie regno = new Cookie("regno", user.getPass());
+			Cookie username = new Cookie("username", user.getEmail());
 			
 			jwtCookie.setPath("/");
 			role.setPath("/");
 			regno.setPath("/");
+			username.setPath("/");
 			
 			response.addCookie(jwtCookie);
 			response.addCookie(role);
 			response.addCookie(regno);
+			response.addCookie(username);
 			
 			
 			if(user.getRole().equals("student")) {
 				response.sendRedirect(request.getContextPath()+"/S_Home_Servlet");
 			}else {
-				response.sendRedirect(request.getContextPath()+"/private/staff/shome.jsp");
+				response.sendRedirect(request.getContextPath()+"/Staff_Dashboard_Servlet");
 			}
 		}else {
 			System.out.println("Error in DBase");
