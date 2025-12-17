@@ -22,11 +22,11 @@
         <a class="nav-btn" href="<%=request.getContextPath()%>/S_Home_Servlet">
         <i class="fa-solid fa-table-columns"></i>&nbsp;Dashboard
     </a>
-    <a class="nav-btn" href="<%=request.getContextPath()%>/private/student/books.jsp">
+    <a class="nav-btn" href="<%=request.getContextPath()%>/BookServlet">
         <i class="fa-solid fa-book"></i>&nbsp;Books
     </a>
     
-    <a class="nav-btn" href="<%=request.getContextPath()%>/private/student/return-book.jsp">
+    <a class="nav-btn" href="<%=request.getContextPath()%>/Issued_book_list_Servlet">
         <i class="fa-solid fa-book-bookmark"></i>&nbsp;Return Book
     </a>
     

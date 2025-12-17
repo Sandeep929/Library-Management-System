@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.db.StudentDB;
 import com.db.UserDB;
 import com.jwt.JwtUtil;
+import com.pojo.Student;
 import com.pojo.User;
 
 /**
@@ -28,6 +30,8 @@ public class LoginServlet extends HttpServlet {
 		u.setEmail(email);
 		u.setPass(pass);
 		
+		String name = null;
+		
 		UserDB dbs = new UserDB();
 		
 		User user = dbs.checkUser(u);
@@ -38,9 +42,20 @@ public class LoginServlet extends HttpServlet {
 			
 			System.out.println(token);
 			
+			
 			Cookie jwtCookie = new Cookie("Token", token);
 			Cookie role = new Cookie("role", user.getRole());
 			Cookie regno = new Cookie("regno", user.getPass());
+			
+			if(user.getRole().equals("student")) {
+				StudentDB sdb = new StudentDB();
+				Student s = new Student();
+				s = sdb.searchStudent(u.getPass());
+				name = s.getName();
+				Cookie Sname = new Cookie("name", name);
+				Sname.setPath("/");
+				response.addCookie(Sname);
+			}
 			
 			jwtCookie.setPath("/");
 			role.setPath("/");

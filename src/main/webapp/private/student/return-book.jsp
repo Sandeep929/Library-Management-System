@@ -1,3 +1,6 @@
+<%@page import="com.pojo.RecentIssues"%>
+<%@page import="com.pojo.Book"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,7 +15,7 @@
 <div class="container">
     <div class="header">
       <div class="logo">📚 Library Management System</div>
-      <div class="small">Admin</div>
+      <div class="small">${name}</div>
     </div>
     <div class="layout">
       
@@ -24,7 +27,7 @@
         <i class="fa-solid fa-book"></i>&nbsp;Books
     </a>
     
-    <a class="nav-btn" href="<%=request.getContextPath()%>/private/student/return-book.jsp">
+    <a class="nav-btn" href="<%=request.getContextPath()%>/Issued_book_list_Servlet">
         <i class="fa-solid fa-book-bookmark"></i>&nbsp;Return Book
     </a>
     
@@ -37,13 +40,32 @@
         
 		<div class="card">
 		  <h3 style="margin-top:0;">Return Book</h3>
-		  <form>
+		  <p style="color: blue;">${status}</p>
+		  <form action="<%=request.getContextPath()%>/ReturnBookServlet">
 		    <div class="form-group"><label>Loan</label>
-		      <select class="select">
-		        <option>Radhika P — Introduction to Java (Issued 2025-11-28)</option>
+		      <select name = "return_book" class="select">
+		      	<%
+		      		ArrayList<Book> bl = (ArrayList<Book>) request.getAttribute("bl");
+		      		ArrayList<RecentIssues> ril = (ArrayList<RecentIssues>) request.getAttribute("ri");
+		      		if(ril != null && bl != null && ril.size() > 0 && bl.size() > 0){
+		      		for(RecentIssues ri : ril){
+		      			for(Book b : bl){
+		      				if(ri.getIsbn().equals(b.getISBN())){
+		        			%>
+		        			<option value ="<%=b.getISBN()%>">${name} — <%= b.getTitle() %> (Due Date <%= ri.getDueDate() %>)</option>
+		        			<%
+		      					}
+		      				}
+		      			}
+		      		}else{
+		      			%>
+	        			<option value = "null">Empty</option>
+	        			<%
+		      		}
+		        %>
 		      </select>
 		    </div>
-		    <div style="text-align:right;"><a class="btn" href="<%=request.getContextPath()%>/private/student/return-book.jsp">Return</a></div>
+		    <div style="text-align:right;"><button type="submit" class="btn" >Return</button></div>
 		  </form>
 		</div>
 

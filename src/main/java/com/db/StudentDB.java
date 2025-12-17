@@ -66,4 +66,24 @@ public class StudentDB {
 		
 		return b;
 	}
+	
+	public Student searchStudent(String regno) {
+		Student s = new Student();
+		try {
+			PreparedStatement ps = con.prepareStatement("select * from Student where regno = ?");
+			ps.setString(1, regno);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				s.setEmail(rs.getString("email"));
+				s.setName(rs.getString("name"));
+				s.setPhoneNo(rs.getString("phoneno"));
+				s.setRegNo(rs.getString("regno"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return s;
+	}
 }
