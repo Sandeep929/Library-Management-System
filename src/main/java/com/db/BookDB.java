@@ -145,5 +145,31 @@ public class BookDB {
 			return false;
 		}
 	}
+	
+	public int[] getBooksCounts() {
+	
+		int[] counts = new int[3];
+		try {
+			PreparedStatement ps = con.prepareStatement("""
+				    select
+				        (select sum(available) from Books),
+				        (select count(*) from Recent_Issues)
+				""");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			 if (rs.next()) {
+	             counts[0] = rs.getInt(1); 
+	             counts[1] = rs.getInt(2); 
+	             counts[2] = counts[0] - counts[1];
+	         }
+		}catch (Exception e) {
+            e.printStackTrace();
+        }
+		
+		return counts;
+		
+			
+	}
 
 }
