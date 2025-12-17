@@ -44,7 +44,6 @@
 		    <div style="text-align:center;">
 		      <button class = "btn" type="submit">Sign in</button>
 		    </div>
-		    
 		  </form>
 		</div>
       </main>
