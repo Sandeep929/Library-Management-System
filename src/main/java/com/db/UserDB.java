@@ -44,4 +44,25 @@ public class UserDB {
 		return null;
 	}
 	
+	public User getUserRole(String email) {
+		User u = new User();
+		try {
+			PreparedStatement ps = con.prepareStatement("select * from Users where email = ?");
+			ps.setString(1, email);
+			
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				u.setEmail(rs.getString("email"));
+				u.setPass(rs.getString("password"));
+				u.setRole(rs.getString("role"));
+			}
+			return u;
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error in Checking User Details");
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }
