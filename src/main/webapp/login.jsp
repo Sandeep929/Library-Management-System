@@ -11,10 +11,11 @@
 </head>
 <body>
 	<div class="container">
-		<div class="header">
-			<div class="logo">📚 Library Management System</div>
-			<div class="small">Admin</div>
-		</div>
+    <div class="header">
+      <div class="logo">📚 Library Management System</div>
+      <div class="small">Admin</div>
+    </div>
+   
 		<div class="layout">
 
 			<main class="main">

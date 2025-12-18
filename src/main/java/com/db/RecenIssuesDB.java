@@ -91,6 +91,7 @@ public class RecenIssuesDB {
 	}
 	
 
+
 	public boolean deleteRIssues(RecentIssues ri) {
 		boolean b = false;
 		
