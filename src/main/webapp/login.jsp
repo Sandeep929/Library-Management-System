@@ -54,7 +54,7 @@
 						</div>
 						<br>
 						<div style="text-align: center;">
-							<a
+							<a href="<%= request.getContextPath() %>/OAuth_Google_Login_Servlet"
 								 style="cursor:pointer;  min-width: -webkit-fill-available; display: flex; justify-content: center; align-items: center;"
 								class="btn" type="submit"><%--<i class='bxl  bx-google' style='color:#ffffff'></i>--%><img width="20" height="20" src="https://img.icons8.com/color/48/google-logo.png" 
 								alt="google-logo"/>
