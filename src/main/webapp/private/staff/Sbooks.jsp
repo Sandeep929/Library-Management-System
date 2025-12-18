@@ -17,7 +17,7 @@
         <p style="display:<%= (String)request.getAttribute("Status") != null ? "block;" : "none;"%> color: blue;">${Status}</p>
 		<div class="card">
 		  <h3 style="margin-top:0;">Books Management</h3>
-		  <div style="display:flex;justify-content: space-between;margin-top:8px;margin-bottom:12px;">
+		  <div style="display:flex;justify-content: space-between; align-items:center; margin-top:8px;margin-bottom:12px;">
 		  	<p>Add, view, search, and manage books</p>
 		  	<a class="btn" href="<%=request.getContextPath()%>/private/staff/add-books.jsp"><i class="fa-regular fa-plus"></i>&nbsp;Add New Book</a>
 		  </div>

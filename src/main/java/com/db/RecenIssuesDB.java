@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.pojo.Dashboard;
 import com.pojo.RecentIssues;
 import com.pojo.Student;
 
@@ -106,6 +107,35 @@ public class RecenIssuesDB {
 			e.printStackTrace();
 		}
 		return b;
+	}
+	
+	public ArrayList<Dashboard> getIssueDetails() {
+		ArrayList<Dashboard> rl = new ArrayList<Dashboard>();
+		
+		try {
+			PreparedStatement ps = con.prepareStatement("select name, title, issuedate, duedate, status"
+														+ " from recent_issues"
+														+ " INNER JOIN student on recent_issues.regno = student.regno"
+														+ " INNER JOIN books on recent_issues.isbn = books.isbn");
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Dashboard d = new Dashboard();
+				d.setName(rs.getString("name"));
+				d.setB_name(rs.getString("title"));
+				d.setIssueDate(rs.getString("issuedate"));
+				d.setDueDate(rs.getString("duedate"));
+				d.setStatus(rs.getString("status"));
+				
+				rl.add(d);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error in getting Dashboard Information");
+			e.printStackTrace();
+		}
+		
+		return rl;
 	}
 
 }

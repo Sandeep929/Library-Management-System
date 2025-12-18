@@ -1,3 +1,5 @@
+<%@page import="com.pojo.Dashboard"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -40,10 +42,41 @@
 		<div class="card">
 		  <h4 style="margin-top:0;">Recent Issues</h4>
 		  <table class="table">
-		    <thead><tr><th>User</th><th>Book</th><th>Issue Date</th><th>Due</th><th>Status</th></tr></thead>
+		    <thead>
+		    	<tr>
+		    		<th>User</th>
+		    		<th>Book</th>
+		    		<th>Issue Date</th>
+		    		<th>Due</th>
+		    		<th>Status</th>
+		    	</tr>
+		    </thead>
 		    <tbody>
-		      <tr><td>Radhika P</td><td>Introduction to Java</td><td>2025-11-28</td><td>2025-12-12</td><td><span class="badge">Issued</span></td></tr>
-		      <tr><td>Aman S</td><td>Data Structures</td><td>2025-11-20</td><td>2025-12-04</td><td><span class="badge">Overdue</span></td></tr>
+		      <%
+		    	ArrayList<Dashboard> rl = (ArrayList<Dashboard>)request.getAttribute("d_list");
+		    	if(rl != null && rl.size() > 0){
+		    	for(int i = 0; i<rl.size(); i++){
+					%>		      
+		    	<tr>
+		      		<td><%= rl.get(i).getName() %></td>
+		      		<td><%= rl.get(i).getB_name() %></td>
+		      		<td><%= rl.get(i).getIssueDate() %></td>
+		      		<td><%= rl.get(i).getDueDate() %></td>
+		      		<td><span class = "badge"><%= rl.get(i).getStatus() %></span></td>
+		        </tr>
+		      		<%
+					}
+		      }
+		    	else{
+		    		%>
+						<tr>
+							<td colspan="5"
+								style="text-align: center; padding: 10px; font-size: 0.9em; color: #6b6b6b; background: #f7f7f8; border: 1px dashed #e0e0e0; border-radius: 6px; font-style: italic;">
+								Not available</td>
+						</tr>
+						<%
+		    	}
+		     %>
 		    </tbody>
 		  </table>
 		</div>

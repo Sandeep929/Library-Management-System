@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.db.BookDB;
 import com.db.RecenIssuesDB;
 import com.pojo.Book;
+import com.pojo.Dashboard;
 import com.pojo.RecentIssues;
 
 /**
@@ -20,34 +21,30 @@ import com.pojo.RecentIssues;
  */
 @WebServlet("/Staff_Dashboard_Servlet")
 public class Staff_Dashboard_Servlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Staff_Dashboard_Servlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
 		BookDB bdb = new BookDB();
+		RecenIssuesDB rdb = new RecenIssuesDB();
 		
 		int counts[] = bdb.getBooksCounts();
 		
+		ArrayList<Dashboard> rl = rdb.getIssueDetails();
+		if(rl == null) {
+			System.out.println("Dashboard info is null");
+			RequestDispatcher rdf = request.getRequestDispatcher("/private/staff/shome.jsp");
+			rdf.forward(request, response);
+			return;
+		}
+		
+		request.setAttribute("d_list", rl);
 		request.setAttribute("tatBooks", counts[0]);
 		request.setAttribute("issBooks", counts[1]);
 		request.setAttribute("availBooks", counts[2]);
 		
 		RequestDispatcher rdf = request.getRequestDispatcher("/private/staff/shome.jsp");
 		rdf.forward(request, response);
-		
-		
 	}
 
 	/**
