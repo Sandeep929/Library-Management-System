@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -88,7 +89,11 @@ public class OAuth_Google_Callback extends HttpServlet {
 	        	User u1 = u.getUserRole(email);
 	        	
 	        	if(u1 == null) {
+	        		String value = URLEncoder.encode("User does not exist");
+	        		Cookie cookie = new Cookie("response", value);
+	        		response.addCookie(cookie);
 	        		response.sendRedirect(request.getContextPath()+"/login.jsp");
+	        		return;
 	        	}
 	        	
 	        	String r = u1.getRole();

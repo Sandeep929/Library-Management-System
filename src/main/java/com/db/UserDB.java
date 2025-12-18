@@ -45,13 +45,14 @@ public class UserDB {
 	}
 	
 	public User getUserRole(String email) {
-		User u = new User();
+		User u = null; // Tune yaha pe hi initialize kar ke rakha tha jiske wajah se wo null nahi aa raha tha
 		try {
 			PreparedStatement ps = con.prepareStatement("select * from Users where email = ?");
 			ps.setString(1, email);
 			
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
+				u = new User(); // Initialize yaha karna hai taaki agar user exist karta hai tab hi User Class ka instance bane
 				u.setEmail(rs.getString("email"));
 				u.setPass(rs.getString("password"));
 				u.setRole(rs.getString("role"));

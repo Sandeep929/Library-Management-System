@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -48,6 +49,16 @@
 							<label>Password</label> <input class="input" type="password"
 								name="pass" value="123456" />
 						</div>
+						<%
+							Cookie cookies[] = request.getCookies();
+							for(Cookie cookie : cookies){
+								if(cookie.getName().equals("response")){
+									%>
+									<div style="margin-bottom: 5px; display: flex; justify-content: center; align-items: center;"><span style="color: red;"><%= URLDecoder.decode(cookie.getValue()) %></span></div>
+									<%
+								}
+							}
+						%>
 						<div style="text-align: center;">
 							<button style="min-width: -webkit-fill-available;" class="btn"
 								type="submit">Sign in</button>
@@ -61,7 +72,7 @@
 								 &nbsp; Continue with Google</a>
 						</div>
 					</form>
-
+							
 				</div>
 			</main>
 		</div>
