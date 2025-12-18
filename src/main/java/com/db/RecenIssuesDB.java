@@ -118,7 +118,7 @@ public class RecenIssuesDB {
 														+ " from recent_issues"
 														+ " INNER JOIN student on recent_issues.regno = student.regno"
 														+ " INNER JOIN books on recent_issues.isbn = books.isbn"
-														+ " ORDER BY Timestamp DESC");
+														+ " ORDER BY recent_issues.Timestamp DESC");
 			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
