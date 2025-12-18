@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <div class="container">
 	<%
 	Cookie cookies[] = request.getCookies();
@@ -16,7 +18,7 @@
     <div class="layout">
       
       <aside class="sidebar">
-    <a class="nav-btn" href="<%=request.getContextPath()%>/private/staff/shome.jsp">
+    <a class="nav-btn" href="<%=request.getContextPath()%>/Staff_Dashboard_Servlet">
         <i class="fa-solid fa-table-columns"></i>&nbsp;Dashboard
     </a>
     <a class="nav-btn" href="<%=request.getContextPath()%>/BookServlet">
