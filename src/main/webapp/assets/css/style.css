@@ -19,3 +19,7 @@ body{margin:0;background:#f8fafc;color:#0f172a;}
 .small{font-size:14px;color:#475569;}
 .footer-note{font-size:13px;color:#94a3b8;margin-top:12px;}
 .btn-reject{display:inline-block;padding:10px 14px;border-radius:6px;border:none;background:#f70006;color:white;text-decoration:none;}
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}

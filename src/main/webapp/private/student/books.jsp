@@ -33,6 +33,7 @@
 		    	ArrayList<Book> bl = (ArrayList)request.getAttribute("book_list");
 		    	if(bl != null){
 		    	for(int i = 0; i<bl.size(); i++){
+		    		int bookCount = Integer.parseInt(bl.get(i).getAvailavble());
 					%>		      
 		    	<tr>
 		      	<td><%= bl.get(i).getTitle() %></td>
@@ -55,7 +56,7 @@
 							<form action="Issue_Request_Servlet">
 				      		
 				      			<input style="display: none;" name = "isbn" value = "<%= bl.get(i).getISBN()%>">
-				      			<button style="min-width: 85px;" class="btn" type="submit">Get Book</button>
+				      			<button <%= bookCount == 0 ? "disabled=\"disabled\"": "" %> style="min-width: 85px;" class="btn" type="submit">Get Book</button>
 			      			</form>
 			      		<%
 						}
@@ -64,7 +65,7 @@
 						<form action="Issue_Request_Servlet">
 			      		
 			      			<input style="display: none;" name = "isbn" value = "<%= bl.get(i).getISBN()%>">
-			      			<button style="min-width: 85px;" class="btn" type="submit">Get Book</button>
+			      			<button <%= bookCount == 0 ? "disabled=\"disabled\"": "" %> style="min-width: 85px;" class="btn" type="submit">Get Book</button>
 		      			</form>
 		      		<%
 					}

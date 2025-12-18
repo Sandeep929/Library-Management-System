@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import com.pojo.Dashboard;
@@ -70,12 +72,11 @@ public class RecenIssuesDB {
 		boolean b = false;
 		
 		try {
-			PreparedStatement ps = con.prepareStatement("Insert into recent_issues (regno, isbn, issuedate, duedate, status) values (?,?,?,?,?)");
+			PreparedStatement ps = con.prepareStatement("Insert into recent_issues (regno, isbn, issuedate, duedate) values (?,?,?,?)");
 			ps.setString(1, ri.getRegno());
 			ps.setString(2, ri.getIsbn());
 			ps.setString(3, ri.getIssueDate());
 			ps.setString(4, ri.getDueDate());
-			ps.setString(5, ri.getStatus());
 			
 			int count = ps.executeUpdate();
 			if(count > 0) {
@@ -113,10 +114,11 @@ public class RecenIssuesDB {
 		ArrayList<Dashboard> rl = new ArrayList<Dashboard>();
 		
 		try {
-			PreparedStatement ps = con.prepareStatement("select name, title, issuedate, duedate, status"
+			PreparedStatement ps = con.prepareStatement("select name, title, issuedate, duedate"
 														+ " from recent_issues"
 														+ " INNER JOIN student on recent_issues.regno = student.regno"
-														+ " INNER JOIN books on recent_issues.isbn = books.isbn");
+														+ " INNER JOIN books on recent_issues.isbn = books.isbn"
+														+ " ORDER BY Timestamp DESC");
 			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -125,7 +127,17 @@ public class RecenIssuesDB {
 				d.setB_name(rs.getString("title"));
 				d.setIssueDate(rs.getString("issuedate"));
 				d.setDueDate(rs.getString("duedate"));
-				d.setStatus(rs.getString("status"));
+				
+				DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+				LocalDate issueDate = LocalDate.parse(d.getIssueDate(), fmt);
+				LocalDate dueDate   = LocalDate.parse(d.getDueDate(), fmt);
+
+				if (dueDate.isBefore(LocalDate.now())) {
+				    d.setStatus("Overdue");
+				}else {
+					d.setStatus("Issued");
+				}
 				
 				rl.add(d);
 			}

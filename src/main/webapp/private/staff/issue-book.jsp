@@ -26,6 +26,7 @@
 		    	ArrayList<Book> bl = (ArrayList<Book>)request.getAttribute("book_list");
 		    	if(rl != null && bl != null && rl.size() > 0 && bl.size() > 0){
 		    	for(int i = 0; i<rl.size(); i++){
+		    		int avlbooks = 0;
 					%>		      
 		    	<tr>
 		      	<td><%= rl.get(i).getS_name() %></td>
@@ -35,6 +36,7 @@
 		      	<%
 		      		for(Book b : bl){
 		      			if(rl.get(i).getIsbn().equals(b.getISBN())){
+		      				avlbooks = Integer.parseInt(b.getAvailavble());
 		      				%>
 					      	<td><%= b.getAvailavble() %></td>
 					      	<%
@@ -42,11 +44,15 @@
 		      		}
 		      	%>
 		      	<td style="display: flex; gap:5px;">
+		      			<% if(avlbooks > 0){ %>
 						<form action="<%=request.getContextPath()%>/Manage_Book_Request_Servlet" method="post">
 			      			<input style="display: none;" name = "isbn" value = "<%= rl.get(i).getIsbn()%>">
 			      			<input style="display: none;" name = "regno" value = "<%= rl.get(i).getRegno()%>">
 			      			<button style="min-width: 85px;" class="btn" type="submit">Accept</button>
 		      			</form>
+		      			<%
+		      			}
+		      			%>
 						<form action="<%=request.getContextPath()%>/Manage_Book_Request_Servlet" method="get">
 			      			<input style="display: none;" name = "isbn" value = "<%= rl.get(i).getIsbn()%>">
 			      			<input style="display: none;" name = "regno" value = "<%= rl.get(i).getRegno()%>">

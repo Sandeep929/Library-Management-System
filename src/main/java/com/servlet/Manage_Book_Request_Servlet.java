@@ -24,6 +24,27 @@ public class Manage_Book_Request_Servlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String regno = request.getParameter("regno");
+		String isbn = request.getParameter("isbn");
+		
+		if(regno == null && isbn == null) {
+			request.setAttribute("msg", "not parameter recieved");
+			RequestDispatcher rd = request.getRequestDispatcher("/private/staff/issue-book.jsp");
+			rd.forward(request, response);
+		}
+		
+		IssueRequest ir = new IssueRequest();
+		
+		ir.setRegno(regno);
+		ir.setIsbn(isbn);
+		
+		RequestDB rdb = new RequestDB();
+		
+		if(rdb.deleteRequest(ir)) {
+				RequestDispatcher rd = request.getRequestDispatcher("/Show_Book_Requests_Servlet");
+				rd.forward(request, response);
+		}
+		
 	}
 
 	/**

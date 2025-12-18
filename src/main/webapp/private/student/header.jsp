@@ -1,4 +1,5 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@page import="java.net.URLDecoder"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<div class="container">
 	<%
@@ -7,7 +8,7 @@
 	
 	for (Cookie cookie : cookies) {
 		if(cookie.getName().equals("name")) {
-			username = cookie.getValue();
+			username = URLDecoder.decode(cookie.getValue(), "UTF-8");
 		}
 	}
 	%>

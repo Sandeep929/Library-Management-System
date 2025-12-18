@@ -1,6 +1,8 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -53,7 +55,8 @@ public class LoginServlet extends HttpServlet {
 				Student s = new Student();
 				s = sdb.searchStudent(u.getPass());
 				name = s.getName();
-				Cookie Sname = new Cookie("name", name);
+				String value = URLEncoder.encode(name, "UTF-8");
+				Cookie Sname = new Cookie("name", value);
 				Sname.setPath("/");
 				response.addCookie(Sname);
 			}
