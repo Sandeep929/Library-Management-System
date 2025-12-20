@@ -110,7 +110,8 @@ public class OAuth_Google_Callback extends HttpServlet {
 					Student s = new Student();
 					s = sdb.searchStudent(u1.getPass());
 					name = s.getName();
-					Cookie Sname = new Cookie("name", name);
+					String value = URLEncoder.encode(name);
+					Cookie Sname = new Cookie("name", value);
 					Sname.setPath("/");
 					response.addCookie(Sname);
 				}

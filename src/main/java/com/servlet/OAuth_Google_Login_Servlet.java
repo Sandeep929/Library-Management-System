@@ -21,10 +21,12 @@ public class OAuth_Google_Login_Servlet extends HttpServlet {
     
 	private static final String CLIENT_ID = System.getenv("CLIENT_ID");
 	private static final String CLIENT_SECRET = System.getenv("CLIENT_SECRET");
-	private static final String CALLBACK_URL = "http://localhost:8080/Library-Management-System/OAuth_Google_Callback";
+	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		final String CALLBACK_URL = "http://localhost:8080"+request.getContextPath()+"/OAuth_Google_Callback";
+		System.out.println(CALLBACK_URL);
 		
 		OAuth20Service service = new ServiceBuilder(CLIENT_ID)
 				.apiSecret(CLIENT_SECRET)
