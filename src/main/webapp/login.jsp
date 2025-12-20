@@ -51,11 +51,13 @@
 						</div>
 						<%
 							Cookie cookies[] = request.getCookies();
+							if(cookies != null){
 							for(Cookie cookie : cookies){
 								if(cookie.getName().equals("response")){
 									%>
 									<div style="margin-bottom: 5px; display: flex; justify-content: center; align-items: center;"><span style="color: red;"><%= URLDecoder.decode(cookie.getValue()) %></span></div>
 									<%
+									}
 								}
 							}
 						%>

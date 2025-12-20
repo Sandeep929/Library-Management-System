@@ -24,6 +24,8 @@
 		    <div class="form-group"><label>Loan</label>
 		      <select name = "return_book" class="select">
 		      	<%
+		      		String Aname = (String) request.getAttribute("name");
+		      		String name = URLDecoder.decode(Aname, "UTF-8");
 		      		ArrayList<Book> bl = (ArrayList<Book>) request.getAttribute("bl");
 		      		ArrayList<RecentIssues> ril = (ArrayList<RecentIssues>) request.getAttribute("ri");
 		      		if(ril != null && bl != null && ril.size() > 0 && bl.size() > 0){
@@ -31,7 +33,7 @@
 		      			for(Book b : bl){
 		      				if(ri.getIsbn().equals(b.getISBN())){
 		        			%>
-		        			<option value ="<%=b.getISBN()%>">${name} — <%= b.getTitle() %> (Due Date <%= ri.getDueDate() %>)</option>
+		        			<option value ="<%=b.getISBN()%>"><%= name %> — <%= b.getTitle() %> (Due Date <%= ri.getDueDate() %>)</option>
 		        			<%
 		      					}
 		      				}
