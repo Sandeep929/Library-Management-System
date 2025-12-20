@@ -28,6 +28,8 @@ public class OAuth_Google_Login_Servlet extends HttpServlet {
 		final String CALLBACK_URL = "http://localhost:8080"+request.getContextPath()+"/OAuth_Google_Callback";
 		System.out.println(CALLBACK_URL);
 		
+		
+		
 		OAuth20Service service = new ServiceBuilder(CLIENT_ID)
 				.apiSecret(CLIENT_SECRET)
 				.defaultScope("openid email profile")
