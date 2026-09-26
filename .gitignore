@@ -1,0 +1,13 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Build output
+/build/
+/target/
+/bin/
+
+# IDE workspace folders (should NEVER be inside repo)
+.metadata/
+Servers/

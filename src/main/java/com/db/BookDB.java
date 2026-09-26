@@ -23,7 +23,7 @@ public class BookDB {
 			e.printStackTrace();
 		}
 	}
-	
+	// added comment
 	public ArrayList<Book> getBooks(){
 		ArrayList<Book> bl = new ArrayList<Book>();
 		try {
