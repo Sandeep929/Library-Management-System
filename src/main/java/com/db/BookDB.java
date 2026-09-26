@@ -23,7 +23,7 @@ public class BookDB {
 			e.printStackTrace();
 		}
 	}
-	// added comment
+	// comment added
 	public ArrayList<Book> getBooks(){
 		ArrayList<Book> bl = new ArrayList<Book>();
 		try {
@@ -121,13 +121,15 @@ public class BookDB {
 	
 	public boolean storeRequest(Book b, Student s) {
 		try {
-			PreparedStatement ps = con.prepareStatement("Insert into Request (s_name,RegNo,b_name,ISBN,Available) values s_name = ?, RegNo =?, b_name=?, ISBN = ?, Available = ? ");
+			System.out.println("Reached storeRequest");
+			PreparedStatement ps = con.prepareStatement("Insert into Request (s_name,RegNo,b_name,ISBN,Available) values (?,?,?,?,?) ");
+//			s_name = ?, RegNo =?, b_name=?, ISBN = ?, Available = ? you wrote this instead of this values (?,?,?,?,?) that is why query is not working
 			
 			ps.setString(1, s.getName());
 			ps.setString(2, s.getRegNo());
 			ps.setString(3, b.getTitle());
 			ps.setString(4, b.getISBN());
-			ps.setString(5, b.getAvailavble());
+			ps.setInt(5, Integer.parseInt(b.getAvailavble()));
 			
 			int x = ps.executeUpdate();
 			System.out.println(x);
@@ -142,6 +144,32 @@ public class BookDB {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public int[] getBooksCounts() {
+	
+		int[] counts = new int[3];
+		try {
+			PreparedStatement ps = con.prepareStatement("""
+				    select
+				        (select sum(available) from Books),
+				        (select count(*) from Recent_Issues)
+				""");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			 if (rs.next()) {
+	             counts[0] = rs.getInt(1); 
+	             counts[1] = rs.getInt(2); 
+	             counts[2] = counts[0] - counts[1];
+	         }
+		}catch (Exception e) {
+            e.printStackTrace();
+        }
+		
+		return counts;
+		
+			
 	}
 
 }

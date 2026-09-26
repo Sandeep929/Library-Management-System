@@ -44,4 +44,29 @@ public class UserDB {
 		return null;
 	}
 	
+<<<<<<< HEAD
+=======
+	public User getUserRole(String email) {
+		User u = null; // Tune yaha pe hi initialize kar ke rakha tha jiske wajah se wo null nahi aa raha tha
+		try {
+			PreparedStatement ps = con.prepareStatement("select * from Users where email = ?");
+			ps.setString(1, email);
+			
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				u = new User(); // Initialize yaha karna hai taaki agar user exist karta hai tab hi User Class ka instance bane
+				u.setEmail(rs.getString("email"));
+				u.setPass(rs.getString("password"));
+				u.setRole(rs.getString("role"));
+			}
+			return u;
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error in Checking User Details");
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+>>>>>>> c25f3e3714481c220e44f0de2b739e00bffad54c
 }

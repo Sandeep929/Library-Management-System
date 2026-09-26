@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+<<<<<<< HEAD
 <div class="container">
     <div class="header">
       <div class="logo">📚 Library Management System</div>
@@ -35,23 +36,38 @@
         <i class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout
     </a>
 </aside>
+=======
+<%@include file ="header.jsp" %>
+>>>>>>> c25f3e3714481c220e44f0de2b739e00bffad54c
     
       <main class="main">
         <p style="display:<%= (String)request.getAttribute("Status") != null ? "block;" : "none;"%> color: blue;">${Status}</p>
 		<div class="card">
 		  <h3 style="margin-top:0;">Books Management</h3>
+<<<<<<< HEAD
 		  <div style="display:flex;justify-content: space-between;margin-top:8px;margin-bottom:12px;">
+=======
+		  <div style="display:flex;justify-content: space-between; align-items:center; margin-top:8px;margin-bottom:12px;">
+>>>>>>> c25f3e3714481c220e44f0de2b739e00bffad54c
 		  	<p>Add, view, search, and manage books</p>
 		  	<a class="btn" href="<%=request.getContextPath()%>/private/staff/add-books.jsp"><i class="fa-regular fa-plus"></i>&nbsp;Add New Book</a>
 		  </div>
 		  
 		  <div style="display:flex;gap:8px;margin-top:8px;margin-bottom:12px;">
+<<<<<<< HEAD
 		    <input class="input" placeholder="Search by title or author" />
 		    <select class="select"><option>All categories</option><option>Computer Science</option></select>
 		    <a class="btn" href="<%=request.getContextPath()%>/private/staff/Sbooks.jsp">Search</a>
 		  </div>
 		  
 		  <table class="table">
+=======
+		    <input type="text" class="input" id="searchInput" placeholder="Search by title or author" />
+		    <button class="btn" onclick="searchBooks()">Search</button>
+		  </div>
+		  
+		  <table id="bookTable" class="table">
+>>>>>>> c25f3e3714481c220e44f0de2b739e00bffad54c
 		    <thead><tr><th>Title</th><th>Author</th><th>ISBN</th><th>Category</th><th>Available</th></tr></thead>
 		    <tbody>    
 		    <%
@@ -78,5 +94,19 @@
       </main>
     </div>
   </div>
+<<<<<<< HEAD
+=======
+  <script>
+function searchBooks() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let rows = document.querySelectorAll("#bookTable tbody tr");
+
+    rows.forEach(row => {
+        let text = row.innerText.toLowerCase();
+        row.style.display = text.includes(input) ? "" : "none";
+    });
+}
+</script>
+>>>>>>> c25f3e3714481c220e44f0de2b739e00bffad54c
 </body>
 </html>

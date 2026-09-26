@@ -25,7 +25,11 @@ public class OAuth_Google_Login_Servlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		final String CALLBACK_URL = "https://library-management-system-ysbx.onrender.com/OAuth_Google_Callback";
+=======
+		final String CALLBACK_URL = "http://localhost:8080"+request.getContextPath()+"/OAuth_Google_Callback";
+>>>>>>> c25f3e3714481c220e44f0de2b739e00bffad54c
 		System.out.println(CALLBACK_URL);
 		
 		

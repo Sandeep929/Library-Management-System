@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+<<<<<<< HEAD
 <div class="container">
     <div class="header">
       <div class="logo">📚 Library Management System</div>
@@ -35,6 +36,9 @@
         <i class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout
     </a>
 		</aside>
+=======
+<%@include file ="header.jsp" %>
+>>>>>>> c25f3e3714481c220e44f0de2b739e00bffad54c
     
       <main class="main">
         

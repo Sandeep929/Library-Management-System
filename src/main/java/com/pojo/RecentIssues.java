@@ -1,12 +1,18 @@
 package com.pojo;
 
 public class RecentIssues {
+<<<<<<< HEAD
 	String User;
 	String Book;
+=======
+	String regno;
+	String isbn;
+>>>>>>> c25f3e3714481c220e44f0de2b739e00bffad54c
 	String IssueDate;
 	String DueDate;
 	String Status;
 	
+<<<<<<< HEAD
 	public String getUser() {
 		return User;
 	}
@@ -18,6 +24,20 @@ public class RecentIssues {
 	}
 	public void setBook(String book) {
 		Book = book;
+=======
+	
+	public String getRegno() {
+		return regno;
+	}
+	public void setRegno(String regno) {
+		this.regno = regno;
+	}
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+>>>>>>> c25f3e3714481c220e44f0de2b739e00bffad54c
 	}
 	public String getIssueDate() {
 		return IssueDate;

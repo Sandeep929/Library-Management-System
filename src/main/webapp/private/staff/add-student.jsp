@@ -9,10 +9,27 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+<<<<<<< HEAD
 	<div class="container">
     <div class="header">
       <div class="logo">📚 Library Management System</div>
       <div class="small">Admin</div>
+=======
+	<%
+	Cookie cookies[] = request.getCookies();
+	String username = null;
+	
+	for (Cookie cookie : cookies) {
+		if(cookie.getName().equals("username")) {
+			username = cookie.getValue();
+		}
+	}
+	%>
+	<div class="container">
+    <div class="header">
+      <div class="logo">📚 Library Management System</div>
+      <div class="small"><%= username %></div>
+>>>>>>> c25f3e3714481c220e44f0de2b739e00bffad54c
     </div>
     <div class="layout">
       

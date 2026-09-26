@@ -36,10 +36,15 @@ public class Issue_Request_Servlet extends HttpServlet {
 		for (Cookie cookie : cookies) {
 			if(cookie.getName().equals("regno")) {
 				regno = cookie.getValue();
+<<<<<<< HEAD
+=======
+				System.out.println(regno);
+>>>>>>> c25f3e3714481c220e44f0de2b739e00bffad54c
 			}
 		}
 		
 		Student s = bdb.getStudent(regno);
+<<<<<<< HEAD
 		
 		if(bdb.storeRequest(b, s)) {
 			request.setAttribute("msg", "Requested");
@@ -48,6 +53,17 @@ public class Issue_Request_Servlet extends HttpServlet {
 		}else {
 			System.out.println("Not Store in DB");
 			RequestDispatcher rd = request.getRequestDispatcher("/private/student/books.jsp");
+=======
+		System.out.println(s.getName());
+		if(bdb.storeRequest(b, s)) {
+			request.setAttribute("msg", "Requested");
+			request.setAttribute("ISBN", isbn);
+			RequestDispatcher rd = request.getRequestDispatcher("/BookServlet");
+			rd.forward(request, response);
+		}else {
+			System.out.println("Not Store in DB");
+			RequestDispatcher rd = request.getRequestDispatcher("/BookServlet");
+>>>>>>> c25f3e3714481c220e44f0de2b739e00bffad54c
 			rd.forward(request, response);
 		}
 		
